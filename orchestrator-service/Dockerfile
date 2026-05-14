@@ -1,13 +1,9 @@
 FROM node:18-alpine
-
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm ci --only=production
-
-COPY dist ./dist
-
-EXPOSE 3000
-
-CMD ["node", "dist/main"]
+RUN npm install
+COPY . .
+WORKDIR /app/orchestrator-service
+RUN npm run build
+EXPOSE 3001
+CMD ["node", "dist/orchestrator-service/src/main"]

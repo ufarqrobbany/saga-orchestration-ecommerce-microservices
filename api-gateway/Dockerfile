@@ -1,13 +1,9 @@
 FROM node:18-alpine
-
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm ci --only=production
-
-COPY dist ./dist
-
+RUN npm install
+COPY . .
+WORKDIR /app/api-gateway
+RUN npm run build
 EXPOSE 3000
-
-CMD ["node", "dist/main"]
+CMD ["node", "dist/api-gateway/src/main"]

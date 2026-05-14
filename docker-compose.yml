@@ -22,8 +22,8 @@ services:
 
   api-gateway:
     build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./api-gateway/Dockerfile
     container_name: saga_api_gateway
     ports:
       - "3000:3000"
@@ -36,8 +36,8 @@ services:
 
   orchestrator-service:
     build:
-      context: ./orchestrator-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./orchestrator-service/Dockerfile
     container_name: saga_orchestrator
     ports:
       - "3001:3001"
@@ -55,8 +55,8 @@ services:
 
   order-service:
     build:
-      context: ./order-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./order-service/Dockerfile
     container_name: saga_order_service
     ports:
       - "3002:3002"
@@ -74,8 +74,8 @@ services:
 
   inventory-service:
     build:
-      context: ./inventory-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./inventory-service/Dockerfile
     container_name: saga_inventory_service
     ports:
       - "3003:3003"
@@ -93,8 +93,8 @@ services:
 
   payment-service:
     build:
-      context: ./payment-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./payment-service/Dockerfile
     container_name: saga_payment_service
     ports:
       - "3004:3004"
@@ -112,8 +112,8 @@ services:
 
   shipping-service:
     build:
-      context: ./shipping-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./shipping-service/Dockerfile
     container_name: saga_shipping_service
     ports:
       - "3005:3005"

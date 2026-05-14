@@ -1,13 +1,9 @@
 FROM node:18-alpine
-
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm ci --only=production
-
-COPY dist ./dist
-
-EXPOSE 3000
-
-CMD ["node", "dist/main"]
+RUN npm install
+COPY . .
+WORKDIR /app/shipping-service
+RUN npm run build
+EXPOSE 3005
+CMD ["node", "dist/shipping-service/src/main"]

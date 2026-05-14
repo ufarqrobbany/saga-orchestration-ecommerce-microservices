@@ -1,13 +1,9 @@
 FROM node:18-alpine
-
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm ci --only=production
-
-COPY dist ./dist
-
-EXPOSE 3000
-
-CMD ["node", "dist/main"]
+RUN npm install
+COPY . .
+WORKDIR /app/order-service
+RUN npm run build
+EXPOSE 3002
+CMD ["node", "dist/order-service/src/main"]

@@ -56,12 +56,20 @@ export class SagaOrchestrator {
       throw new Error(`Saga not found: ${saga_id}`);
     }
 
+    const mergedPayload = {
+      ...(saga.order_data || {}),
+      ...(payload || {})
+    };
+    this.logger.log(`📦 Merged payload for ${commandType}: ${JSON.stringify(mergedPayload)}`);
+    saga.order_data = mergedPayload;
+    await this.sagaRepository.save(saga);
+
     const command = {
       saga_id,
       request_id: uuidv4(),
       command_type: commandType,
       timestamp: new Date(),
-      payload,
+      payload: mergedPayload,
       retry_count: 0,
     };
 
@@ -74,7 +82,7 @@ export class SagaOrchestrator {
       }
 
       await this.recordStep(saga_id, commandType);
-      await this.executeNextStep(saga_id, commandType, response.data);
+      await this.executeNextStep(saga_id, commandType, response.data.data || response.data);
     } catch (error) {
       this.logger.error(`❌ Step execution failed: ${error.message}`);
       throw error;

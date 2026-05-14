@@ -20,6 +20,7 @@ export class PaymentCommandHandler {
 
   async handle(command: any) {
     this.logger.log(`📥 Handling command: ${command.command_type}`);
+    this.logger.log(`📦 Incoming command payload: ${JSON.stringify(command.payload)}`);
 
     try {
       switch (command.command_type) {

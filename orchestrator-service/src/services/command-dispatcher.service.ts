@@ -17,13 +17,13 @@ export class CommandDispatcher {
   private readonly logger = new Logger(CommandDispatcher.name);
 
   private readonly serviceMap = {
-    [CommandType.CREATE_ORDER]: 'http://localhost:3002',
-    [CommandType.RESERVE_STOCK]: 'http://localhost:3003',
-    [CommandType.RELEASE_STOCK]: 'http://localhost:3003',
-    [CommandType.CHARGE_PAYMENT]: 'http://localhost:3004',
-    [CommandType.REFUND_PAYMENT]: 'http://localhost:3004',
-    [CommandType.CREATE_SHIPMENT]: 'http://localhost:3005',
-    [CommandType.CANCEL_ORDER]: 'http://localhost:3002',
+    [CommandType.CREATE_ORDER]: process.env.ORDER_SERVICE_URL || 'http://order-service:3002/api/v1',
+    [CommandType.RESERVE_STOCK]: process.env.INVENTORY_SERVICE_URL || 'http://inventory-service:3003/api/v1',
+    [CommandType.RELEASE_STOCK]: process.env.INVENTORY_SERVICE_URL || 'http://inventory-service:3003/api/v1',
+    [CommandType.CHARGE_PAYMENT]: process.env.PAYMENT_SERVICE_URL || 'http://payment-service:3004/api/v1',
+    [CommandType.REFUND_PAYMENT]: process.env.PAYMENT_SERVICE_URL || 'http://payment-service:3004/api/v1',
+    [CommandType.CREATE_SHIPMENT]: process.env.SHIPPING_SERVICE_URL || 'http://shipping-service:3005/api/v1',
+    [CommandType.CANCEL_ORDER]: process.env.ORDER_SERVICE_URL || 'http://order-service:3002/api/v1',
   };
 
   constructor(private readonly httpService: HttpService) {}

@@ -6,4 +6,4 @@ COPY . .
 WORKDIR /app/orchestrator-service
 RUN npm run build
 EXPOSE 3001
-CMD ["node", "dist/orchestrator-service/src/main"]
+CMD ["node", "dist/main"]

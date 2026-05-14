@@ -6,4 +6,4 @@ COPY . .
 WORKDIR /app/order-service
 RUN npm run build
 EXPOSE 3002
-CMD ["node", "dist/order-service/src/main"]
+CMD ["node", "dist/main"]

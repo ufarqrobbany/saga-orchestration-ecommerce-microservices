@@ -6,4 +6,4 @@ COPY . .
 WORKDIR /app/shipping-service
 RUN npm run build
 EXPOSE 3005
-CMD ["node", "dist/shipping-service/src/main"]
+CMD ["node", "dist/main"]

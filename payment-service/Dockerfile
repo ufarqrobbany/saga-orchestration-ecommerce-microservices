@@ -6,4 +6,4 @@ COPY . .
 WORKDIR /app/payment-service
 RUN npm run build
 EXPOSE 3004
-CMD ["node", "dist/payment-service/src/main"]
+CMD ["node", "dist/main"]

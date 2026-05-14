@@ -6,4 +6,4 @@ COPY . .
 WORKDIR /app/inventory-service
 RUN npm run build
 EXPOSE 3003
-CMD ["node", "dist/inventory-service/src/main"]
+CMD ["node", "dist/main"]
